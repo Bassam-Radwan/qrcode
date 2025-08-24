@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image.jpg">
+    <link rel="stylesheet" href="style.css">
+    <title>Qr Code Generator</title>
+</head>
+<body>
+    <h1 id="hi">Generate Your QR Code Instantly</h1>
+    <p>Create professional, custom QR codes in seconds. Simply enter your content—whether it's a URL, text, contact info, or more—and download your QR code in high quality. Customize the design, choose your colors, add a logo, and make it uniquely yours. No sign-up needed. Fast, secure, and completely free to use.</p>
+    <form action="/gen" method="post">
+        <input name="url" type="text" placeholder="Paste url in here" id="url">
+        <input type="submit" value="Generate" id="submit">
+    </form>
+    <% if (locals.urlList) {%>
+        <img src="./qrCode.png" alt="OOPS!">
+    <% }  %>
+
+    <footer>
+        <p>&copy; <span id="year"></span></p>
+        <p>Powered by <a  target="_blank" href="https://github.com/Bassam-Radwan">Bassam</a> </p>
+    </footer>
+    <script src="inex.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
