@@ -8,35 +8,48 @@ import bodyParser from "body-parser";
 
 const port = 3000;
 const app = express();
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const date = new Date("14 July 2025");
-let urlList = []
+let urlList = [];
 app.get("/", (req, res) => {
-    res.render('index.ejs')
+    res.render("index.ejs");
 });
-app.post("/gen", (req, res) => {
-    if (req.body.url == '') {
-        res.render('index.ejs')
-    } else {
-        setTimeout(() => {
-            res.render("index.ejs", {
-                urlList : true
-            })
-            const url = req.body.url
-            const fileName = `qrCode.png`;
-            let qr_svg = qr.image(url, { type: 'png' });
-            const filePath = `${_dirname}/public/${fileName}`;
-            qr_svg.pipe(fs.createWriteStream(filePath))
-            
-        },3000)
+
+// checking function
+function check(url) {
+    try {
+        let myUrl = new URL(url);
+        return true;
+    } catch {
+        return false;
     }
-})
-
-
+}
+app.post("/gen", (req, res) => {
+    if (req.body.url == "") {
+        res.render("index.ejs");
+    } else {
+        if (check(req.body.url) == true) {
+            setTimeout(() => {
+                res.render("index.ejs", {
+                    urlList: true,
+                });
+                const url = req.body.url;
+                const fileName = `qrCode.png`;
+                let qr_svg = qr.image(url, { type: "png" });
+                const filePath = `${_dirname}/public/${fileName}`;
+                qr_svg.pipe(fs.createWriteStream(filePath));
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                res.render("index.ejs")
+            },3000)
+        }
+    }
+});
 
 app.listen(port, () => {
     console.log(`Running on port  ${port}`);
