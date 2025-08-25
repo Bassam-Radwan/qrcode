@@ -19,19 +19,20 @@ app.get("/", (req, res) => {
     res.render('index.ejs')
 });
 app.post("/gen", (req, res) => {
-    console.log(req.body.url);
     if (req.body.url == '') {
-        console.log('Please fill in the form');
         res.render('index.ejs')
     } else {
-        res.render("index.ejs", {
-            urlList : true
-        })
-        const url = req.body.url
-        const fileName = `qrCode.png`;
-        let qr_svg = qr.image(url, { type: 'png' });
-        const filePath = `${_dirname}/public/${fileName}`;
-        qr_svg.pipe(fs.createWriteStream(filePath))
+        setTimeout(() => {
+            res.render("index.ejs", {
+                urlList : true
+            })
+            const url = req.body.url
+            const fileName = `qrCode.png`;
+            let qr_svg = qr.image(url, { type: 'png' });
+            const filePath = `${_dirname}/public/${fileName}`;
+            qr_svg.pipe(fs.createWriteStream(filePath))
+            
+        },3000)
     }
 })
 

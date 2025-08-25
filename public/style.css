@@ -6,7 +6,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg,#07503d , #152b35, #203a43, #203a54, #2c5364, #325b2e);
+    background: linear-gradient(135deg, #07503d, #152b35, #203a43, #203a54, #2c5364, #114f52, #3f6a3b);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -16,25 +16,34 @@ body {
     padding: 20px;
     animation: fadeIn 2s ease-in;
     gap: 40px;
-    height: 100vh;
 }
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+main    .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 h1 {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 15px;
     background: linear-gradient(90deg, #a18cd1, #fbc2eb);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: slideDown 1s ease-out;
 }
-img{
-    width: 18%;
+
+img {
     transition: .2s;
 }
-img:hover{
-    box-shadow: 1px 1px 1px #370352;
-    scale: 1.02;
-}
+
 
 
 p {
@@ -47,10 +56,12 @@ p {
     animation: fadeIn 2s ease-in;
     transition: .3s;
 }
-p:hover{
+
+.container p:hover {
     color: #f2f2f2;
 }
-form {
+
+main form {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -86,7 +97,23 @@ input[type="text"]:focus {
     box-shadow: 0 0 10px #00fff0;
 }
 
-input[type="submit"] {
+main .qr {
+    background-color: rgba(255, 255, 255, 0.026);
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    transition: 1s;
+}
+
+main .qr:hover {
+    transform: scale(1.02);
+    box-shadow: -2px 1px 12px 0px #a973cc78;
+}
+
+.button {
     padding: 15px;
     font-size: 1rem;
     border: none;
@@ -98,7 +125,7 @@ input[type="submit"] {
     transition: all 0.3s ease;
 }
 
-input[type="submit"]:hover {
+.button:hover {
     background: linear-gradient(90deg, #00b3ff, #00fff0);
     transform: translateY(-2px);
     box-shadow: 0 0 10px #00fff0;
@@ -149,21 +176,150 @@ input[type="submit"]:hover {
         font-size: 1rem;
     }
 }
-a{
-    padding: 10px;
+
+a {
     text-decoration: none;
-    color: #888;
+}
+h2{
+    display: none;
+    text-align: center;
+    color: rgba(216, 230, 249, 0.86);
+    line-height: 1.7;
+}
+.code {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    background-color: #1e1e1e40;
+    color: #75f26cc6;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+footer a {
+    padding: 7px;
+    color: #598b55;
     transition: .3s;
     position: relative;
-}
-a:hover{
-    border: 3px solid ;
+    border: 3px solid;
     border-color: transparent transparent #598b55 transparent;
-    color: #598b55
 }
-footer{
+
+footer a:hover {
+    background: linear-gradient(90deg, #81c8df, #a3b17e);
+    background-clip: text;
+    color: transparent;
+    border: 3px solid;
+    border-color: transparent transparent #a973cc78 transparent;
+}
+
+footer {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+/* test */
+.loading {
+    display: none;
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(100, 149, 237, 0.15) 0%, transparent 70%);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.wifi-animation {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: flex-end;
+    height: 50px;
+    width: 140px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bar {
+    width: 16px;
+    background: linear-gradient(180deg, rgba(173, 216, 230, 0.7), rgba(135, 206, 235, 0.7));
+    border-radius: 4px;
+    opacity: 1;
+    animation: signalPulse 1.6s ease-in-out infinite;
+    transform-origin: bottom center;
+    transition: background 0.4s, opacity 0.4s, box-shadow 0.4s, filter 0.4s;
+}
+
+/* Assign heights like signal bars */
+.bar1 {
+    height: 12px;
+    animation-delay: 0s;
+}
+
+.bar2 {
+    height: 20px;
+    animation-delay: 0.1s;
+}
+
+.bar3 {
+    height: 28px;
+    animation-delay: 0.2s;
+}
+
+.bar4 {
+    height: 36px;
+    animation-delay: 0.3s;
+}
+
+@keyframes signalPulse {
+
+    0%,
+    100% {
+        background: linear-gradient(180deg, rgba(173, 216, 230, 0.7), rgba(135, 206, 235, 0.7));
+        opacity: 0.4;
+        transform: scaleY(1) translateY(0);
+        box-shadow: none;
+    }
+
+    50% {
+        background: linear-gradient(180deg, rgba(147, 112, 219, 0.9), rgba(106, 90, 205, 0.9));
+        opacity: 1;
+        transform: scaleY(1.5) translateY(-5px);
+        box-shadow: 0 0 12px rgba(147, 112, 219, 0.7);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .wifi-animation {
+        height: 40px;
+        width: 100px;
+        gap: 6px;
+    }
+
+    .bar {
+        width: 12px;
+    }
+
+    .bar1 {
+        height: 10px;
+    }
+
+    .bar2 {
+        height: 16px;
+    }
+
+    .bar3 {
+        height: 22px;
+    }
+
+    .bar4 {
+        height: 28px;
+    }
 }
