@@ -23,7 +23,7 @@ h1 {
     text-align: center;
     margin-bottom: 15px;
     background: linear-gradient(90deg, #a18cd1, #fbc2eb);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: slideDown 1s ease-out;
 }

@@ -8,24 +8,25 @@ import bodyParser from "body-parser";
 
 const port = 3000;
 const app = express();
+app.set("view engine", "ejs")
 app.use(express.static('public'))
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const date = new Date("14 July 2025");
+
 let urlList = []
-app.get("/", (req, res) => {
-    res.render('index.ejs')
+app.get("/start", (req, res) => {
+    res.render('index')
 });
 app.post("/gen", (req, res) => {
     console.log(req.body.url);
     if (req.body.url == '') {
         console.log('Please fill in the form');
-        res.render('index.ejs')
+        res.render('index')
     } else {
         res.render("index.ejs", {
-            urlList : true
+            urlList: true
         })
         const url = req.body.url
         const fileName = `qrCode.png`;
