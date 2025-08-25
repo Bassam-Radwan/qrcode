@@ -9,13 +9,14 @@ import bodyParser from "body-parser";
 const port = 3000;
 const app = express();
 app.use(express.static("public"));
+app.set("view engine", "ejs")
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const date = new Date("14 July 2025");
 let urlList = [];
-app.get("/", (req, res) => {
+app.get("/start", (req, res) => {
     res.render("index.ejs");
 });
 
