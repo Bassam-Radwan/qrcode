@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Author: A.N. Author,
+    Illustrator: P. Picture, Category: Books, Price: $17.99,
+    Length: 784 pages">
     <link rel="icon" href="image.jpg" />
     <link rel="stylesheet" href="style.css" />
     <title>Qr Code Generator</title>
@@ -29,12 +32,14 @@
 
       <!-- user inputs -->
       <form action="/gen" method="post">
+        <label for="url"></label>
         <input
           name="url"
           type="text"
           placeholder="Paste url in here"
           id="url"
         />
+        <label for="submit"></label>
         <input type="submit" value="Generate" id="submit" class="button" />
       </form>
 

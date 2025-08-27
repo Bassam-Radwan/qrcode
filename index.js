@@ -43,7 +43,7 @@ app.post("/gen", (req, res) => {
                 let qr_svg = qr.image(url, { type: "png" });
                 const filePath = `${_dirname}/public/${fileName}`;
                 qr_svg.pipe(fs.createWriteStream(filePath));
-            }, 1000);
+            }, 3000);
         } else {
             setTimeout(() => {
                 res.render("index.ejs")
@@ -53,5 +53,5 @@ app.post("/gen", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Running on port  ${port}`);
+    console.log(`Running on http://localhost:${port}`);
 });
